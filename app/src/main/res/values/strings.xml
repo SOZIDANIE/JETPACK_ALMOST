@@ -8,4 +8,6 @@
     <string name="title_activity_profile">Profile</string>
     <string name="title_activity_user_login">UserLogin</string>
     <string name="title_activity_user_login2">UserLogin2</string>
+    <string name="title_activity_alarmc">ALARMc</string>
+    <string name="title_activity_alarmtrue_c">ALARMtrueC</string>
 </resources>

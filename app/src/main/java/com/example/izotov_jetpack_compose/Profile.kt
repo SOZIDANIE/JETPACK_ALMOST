@@ -152,7 +152,7 @@ fun ImageForPerson() {
 fun TextForp() {
     val White1: Color = White
     Text(
-        "Изменить задачу",
+        "Профиль пользователя",
         fontSize = 30.sp,
         modifier = Modifier.offset(x = 10.dp, y = (-50).dp),
         color = White1,

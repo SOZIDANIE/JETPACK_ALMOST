@@ -1,49 +1,33 @@
 package com.example.izotov_jetpack_compose
 
 import android.content.Intent
-import android.media.Image
 import android.os.Bundle
 import android.print.PrintAttributes
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.annotation.NonNull
-import androidx.annotation.Nullable
-import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment.Companion.Center
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.TransformOrigin.Companion.Center
-import androidx.compose.ui.text.PlaceholderVerticalAlign.Companion.Center
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.painter.BitmapPainter
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign.Companion.Center
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.shape.CutCornerShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme.typography
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.TopEnd
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.*
-import androidx.compose.ui.graphics.painter.BitmapPainter
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.imageResource
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import com.example.izotov_jetpack_compose.ui.theme.*
-import kotlin.coroutines.coroutineContext
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,15 +60,16 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun Button() {
-    val White1: Color = White
-    Button(onClick = { /*TODO*/ },colors = ButtonDefaults.buttonColors(backgroundColor = LightGreen, contentColor = DarkGreen
+    val context = LocalContext.current
+    Button(onClick = { val inte = Intent(context, ALARMtrueC::class.java)
+        startActivity(context, inte, null) },colors = ButtonDefaults.buttonColors(backgroundColor = LightGreen, contentColor = DarkGreen
     ), modifier = Modifier
         .size(365.dp, 60.dp)
         .offset(x = 12.dp, y = 169.dp)
         .background(color = Green1), shape = RoundedCornerShape(15.dp)) {
         Text("Добавить будильник",
             fontSize = 20.sp,
-            color = White1)
+            color = White)
     }
 }
 
@@ -97,10 +82,10 @@ fun Image() {
         contentDescription = "аватар",
         modifier = Modifier
             .size(60.dp)
-            .offset(x = 305.dp, y = -245.dp)
+            .offset(x = 305.dp, y = -(245).dp)
             .clickable ( onClick = {
                 val inte = Intent(context, Profile::class.java)
-                ContextCompat.startActivity(context, inte, null)
+                startActivity(context, inte, null)
             } )
     )
 }
@@ -108,25 +93,26 @@ fun Image() {
 @Preview(showBackground = true)
 @Composable
 fun Text() {
-    val White1: Color = White
     Text("Будильник",
         fontSize = 30.sp,
         modifier = Modifier.padding(20.dp),
-        color = White1,
+        color = White,
         fontWeight = FontWeight.Bold)
 }
 
 @Preview(showBackground = true)
 @Composable
 fun Row1() {
-    val White1: Color = White
+    val context = LocalContext.current
     val checkedState = remember { mutableStateOf(false) }
     Row (verticalAlignment = Alignment.CenterVertically ) {
         PrintAttributes.Margins(40, 0, 0, 0)
         Text("07:30",
             fontSize = 60.sp,
-            modifier = Modifier.padding(5.dp),
-            color = White1,
+            modifier = Modifier.padding(5.dp)
+                .clickable { val inte = Intent(context, ALARMc::class.java)
+                    startActivity(context, inte, null) },
+            color = White,
             fontWeight = FontWeight.Light)
         Switch(
             checked = checkedState.value,
@@ -156,13 +142,15 @@ fun Row1() {
 @Preview(showBackground = true)
 @Composable
 fun Row2() {
-    val White1: Color = White
+    val context = LocalContext.current
     val checkedState1 = remember { mutableStateOf(false) }
     Row (verticalAlignment = Alignment.CenterVertically ) {
         Text("08:00",
             fontSize = 60.sp,
-            modifier = Modifier.padding(5.dp),
-            color = White1,
+            modifier = Modifier.padding(5.dp)
+                .clickable { val inte = Intent(context, ALARMc::class.java)
+                startActivity(context, inte, null) },
+            color = White,
             fontWeight = FontWeight.Light)
         Switch(
             checked = checkedState1.value,

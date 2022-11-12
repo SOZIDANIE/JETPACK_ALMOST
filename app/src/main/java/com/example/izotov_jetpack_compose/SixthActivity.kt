@@ -72,7 +72,7 @@ fun TrxtView6() {
                 .background(White)
         ) {
             Text(
-                "Записать задачу",
+                "Заголовок задачи",
                 fontSize = 20.sp,
                 color = Gray1,
                 modifier = Modifier.padding(5.dp)
